@@ -18,18 +18,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
+    // 싱글톤이 깨진다?? -> 아님(테스트 해 본 결과)
+    // 진짜 실행되는 건 맞는지 로그 남겨서 확인해보자.
+
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService"); // 로그 남김
         return new MemberServiceImpl(memberRepository());
     } // 생성한 객체 인스턴스의 레퍼런스를 '생성자를 통해서 주입'해줌
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository"); // 로그 남김
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService"); // 로그 남김
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
