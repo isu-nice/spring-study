@@ -1,6 +1,5 @@
 package hello.core.xml;
 
-import hello.core.MemberApp;
 import hello.core.member.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
