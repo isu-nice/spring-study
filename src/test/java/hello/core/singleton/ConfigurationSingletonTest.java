@@ -23,7 +23,8 @@ public class ConfigurationSingletonTest {
         MemberRepository memberRepository1 = memberService.getMemberRepository();
         MemberRepository memberRepository2 = orderService.getMemberRepository();
 
-        // 셋 다 같은 인스턴스가 나온다.
+        // 모두 같은 인스턴스를 참고하고 있다.
+        // -> 셋 다 같은 인스턴스가 나온다.
         System.out.println("memberService -> memberRepository1 = " + memberRepository1);
         System.out.println("orderService -> memberRepository2 = " + memberRepository2);
         System.out.println("memberRepository = " + memberRepository);
@@ -35,9 +36,11 @@ public class ConfigurationSingletonTest {
     @Test
     void configurationDeep() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // AppConfig 도 스프링 빈으로 등록된다.
         AppConfig bean = ac.getBean(AppConfig.class);
 
         System.out.println("bean = " + bean.getClass());
-
+        // 출력: bean = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$bd479d70
     }
 }

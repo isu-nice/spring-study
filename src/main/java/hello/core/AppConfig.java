@@ -25,19 +25,22 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService() {
-        System.out.println("call AppConfig.memberService"); // 로그 남김
+        // 로그 남김 -> 한 번
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     } // 생성한 객체 인스턴스의 레퍼런스를 '생성자를 통해서 주입'해줌
 
     @Bean
     public MemberRepository memberRepository() {
-        System.out.println("call AppConfig.memberRepository"); // 로그 남김
+        // 로그 남김 -> 두 번?? 세 번?? -> 결론: 한 번
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
-        System.out.println("call AppConfig.orderService"); // 로그 남김
+        // 로그 남김 -> 한 번
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
