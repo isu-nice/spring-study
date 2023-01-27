@@ -53,10 +53,11 @@ public class SingletonTest {
     @Test
     @DisplayName("스프링 컨테이너 싱글톤")
     void springContainer() {
-        // 1. 스프링 컨테이너로
+
+        // 1. 스프링 컨테이너 -> 이미 만들어진 객체를 공유해서 재사용
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        // 2. 객체 여러개 생성
+        // 2. 조회: 객체 여러개 생성 -> 호출할 때 마다 같은 객체 반환
         MemberService memberService1 = ac.getBean("memberService", MemberService.class);
         MemberService memberService2 = ac.getBean("memberService", MemberService.class);
 
