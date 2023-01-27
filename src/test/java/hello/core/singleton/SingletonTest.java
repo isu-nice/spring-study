@@ -32,7 +32,11 @@ public class SingletonTest {
     @Test
     @DisplayName("싱글톤 패턴을 적용한 객체 사용")
     void singletonServiceTest() {
-        // 1. 객체 여러번 생성
+
+        // new SingletonService();
+        // -> private 으로 생성자를 막아두었기 때문에 컴파일 오류 발생
+
+        // 1. 조회: 객체 여러번 생성
         SingletonService service1 = SingletonService.getInstance();
         SingletonService service2 = SingletonService.getInstance();
 
