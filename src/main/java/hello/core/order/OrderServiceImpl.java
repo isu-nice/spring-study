@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService {
 
     // 인터페이스에만 의존하게 된다.
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
+    /* DI 방식 사용 (final 붙여줌) -> setter 사용하지 않을 것이기 때문에 삭제해줌
     @Autowired
     public void setMemberRepository(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -22,8 +23,9 @@ public class OrderServiceImpl implements OrderService {
     public void setDiscountPolicy(DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
+     */
 
-    // setter 주입하면 생략가능
+    // setter 주입하면 생략가능 -> 그렇지만 DI 방식이 낫다!
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
