@@ -22,6 +22,7 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("타입으로 조회 시 같은 타입이 둘 이상 존재하면 중복 오류 발생")
     void findBeanByTypeDuplication() {
+//        MemberRepository bean = ac.getBean(MemberRepository.class);   -> 오류 발생
         assertThrows(NoUniqueBeanDefinitionException.class,
                 () -> ac.getBean(MemberRepository.class));
     }
@@ -38,7 +39,7 @@ public class ApplicationContextSameBeanFindTest {
     void findAllBeanByType() {
         Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
         for (String key : beansOfType.keySet()) {
-            System.out.println("key + " + key + " value = " + beansOfType.get(key));
+            System.out.println("key = " + key + " value = " + beansOfType.get(key));
         }
         System.out.println("beansOfType = " + beansOfType);
         assertThat(beansOfType.size()).isEqualTo(2);
